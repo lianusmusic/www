@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylemenu.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+  <style>
+      #mainmenu ul li{
+        cursor: pointer;    
+        color: white;    
+        list-style:none;
+      }
+      #mainmenu ul li:hover{
+        font-size: 1.5em;
+        transition: 0.5s;
+      }
+
+      #ul1,#ul2,#ul3,#ul4{
+        display: none;
+      }
+      
+      #mainul li{
+        transition:1s;        
+      }
+      #mainul li.seleccionado{
+        color:rgba(200, 210, 250, 0.85);
+      }
+
+      .listainstrumentos{
+          display: flex;   
+          list-style: none;  
+          text-align: center;          
+          font-family: 'Roboto', sans-serif;
+          font-size: 15px;
+          font-weight: bold;
+          margin:0;
+          padding: 0;
+          justify-content: center;
+        }
+
+        .listainstrumentos li{ 
+          margin:25px;
+          padding:25px;
+          width: 100px;
+          color: white;
+          background-color: rgba(118, 68, 138 , 0.75);
+          cursor:pointer;
+          border-radius: 50%;
+        }
+
+        .listainstrumentos li:hover{ 
+            background-color: orange;
+            transition: 1s;
+        }
+
+        .listainstrumentos li.selected{
+          background-color: orange;          
+        }
+        .select1 {
+          width: 100%;  
+          text-align: center;          
+          font-family: 'Roboto', sans-serif;
+          font-size: 20px;
+          font-weight: bold;
+          color: whitesmoke;
+        }
+        @media (max-width: 500px){
+          .listainstrumentos li{ 
+              margin:15px;
+              padding:15px; 
+          }         
+        }
+      
+  </style>
+  <title>TRIADIC CHROMATIC APPROACH</title>
+</head>
+<body>
+  <div class="menu-wrap">
+    <input type="checkbox" class="toggler">
+    <div class="hamburger"><div></div></div>
+    <div class="menu" id="mainmenu">
+      <div>
+        <div>
+          <ul id="mainul">
+              <li onclick="toglehomemenu('1')" data-id="1"> ABOUT THE BOOK <BR>CHROMATIC LINES OVER STANDARD TUNES PROGRESSIONS</li>
+                <ul id="ul1">
+                    <li><a class="submenu" href="page3.html">INTRODUCTION</a></li>
+                    <li><a class="submenu" href="page3.html#autor">ABOUT THE CONCEPT</a></li>
+                </ul>
+              <li onclick="toglehomemenu('2')" data-id="2">THE TUNES</li>
+              <ul id="ul2">
+                <li><a class="submenu" href="page17.html">NOTHIN' IS OUT OF SOMEWHERE</a></li>
+                <li><a class="submenu" href="page18.html">SOME THINGS YOU WOULD LIKE TO BE</a></li>
+                <li><a class="submenu" href="page19.html">THERE WILL ALWAYS BE SOMEONE</a></li>
+                <li><a class="submenu" href="page20.html">I FORGOT MAY</a></li>
+                <li><a class="submenu" href="page21.html">I HEAR A RAP CD</a></li>
+                <li><a class="submenu" href="page22.html">IT WILL HAPPEN TO YOU</a></li>
+                <li><a class="submenu" href="page23.html">MOONER</a></li>
+
+            </ul>            
+           
+            <li onclick="toglehomemenu('3')" data-id="3">ANGULAR REFERENCES</li>
+              <ul id="ul3">
+                <li><a class="submenu" href="#">ANGULAR REFERENCES</a></li>
+                <li>Angular References 1</li>
+                <li>Angular References 2</li>
+  
+            </ul>
+            <li onclick="toglehomemenu('4')" data-id="4">CHROMATIC VARIATIONS</li>
+            <ul id="ul4">
+
+              <li>Chromatic Variations 1</li>
+              <li>Chromatic Variations 2</li>
+
+          </ul>
+
+            <div id="selector">
+              <h2 class="select1">CHOOSE YOUR PREFERRED TRANSPOSITION</h2>
+               <ul class="listainstrumentos">
+                   <li data-id="0">Bb</li>
+                   <li data-id="1">Eb</li>
+                   <li data-id="2">C</li>
+                   <li data-id="3">Bass</li>
+               </ul>
+           </div>
+          
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="showcase">
+    <div class="container showcase-inner">
+      <h1>Welcome to the <br>Triadic Chromatic Approach</h1>
+      <p>This is George Garzone, and I want you to start learning this improvising method that I developed . I guarantee , it will make you sound unique.</p>      
+    </div>
+  </header>
+
+  <script>
+    var menuelegido = 0;
+    function toglehomemenu(id){
+      $("#mainul li").removeClass("seleccionado");
+      $("#mainul li[data-id="+id+"]").addClass("seleccionado");
+      $("#mainmenu ul > ul").css("display","none")
+      if(menuelegido == id){
+        $("#ul"+id).slideUp("slow");
+        $("#mainul li").removeClass("seleccionado");
+        menuelegido = 0;
+      }
+      else{
+        $("#ul"+id).toggle();
+        menuelegido = id;
+      }
+    }
+  $(document).on("click",".listainstrumentos li",function(){
+    var n = $(this).attr("data-id");
+    $(".listainstrumentos li").removeClass("selected")
+    $(this).addClass("selected")
+    localStorage.setItem("instrumento",n);
+  })
+</script>
+  </script>
+</body>
+</html>
